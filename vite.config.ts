@@ -5,6 +5,7 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  allowedHosts: ['musichub-0cvt.onrender.com'],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
