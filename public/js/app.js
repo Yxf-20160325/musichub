@@ -104,19 +104,16 @@ function updateNav() {
 
 function setupEventListeners() {
   // 登录/注册切换
-  document.querySelectorAll('.auth-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      
-      if (tab.dataset.tab === 'login') {
-        document.getElementById('loginForm').style.display = 'flex';
-        document.getElementById('registerForm').style.display = 'none';
-      } else {
-        document.getElementById('loginForm').style.display = 'none';
-        document.getElementById('registerForm').style.display = 'flex';
-      }
-    });
+  document.getElementById('switchToRegister').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('registerForm').style.display = 'flex';
+  });
+  
+  document.getElementById('switchToLogin').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('registerForm').style.display = 'none';
+    document.getElementById('loginForm').style.display = 'flex';
   });
   
   // 登录
@@ -152,7 +149,8 @@ function setupEventListeners() {
     
     if (data.success) {
       showToast('注册成功，请登录', 'success');
-      document.querySelector('[data-tab="login"]').click();
+      document.getElementById('registerForm').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'flex';
     } else {
       showToast(data.message, 'error');
     }
