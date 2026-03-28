@@ -4,7 +4,16 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react({
+      babel: {
+        parserOpts: {
+          plugins: ['react-refresh/babel'],
+        },
+      },
+    }),
+    tailwindcss(),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -12,6 +21,6 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    allowedHosts: ['musichub-0cvt.onrender.com'],
+    allowedHosts: ['musichub-unka.onrender.com'],
   },
 })
