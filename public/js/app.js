@@ -139,20 +139,35 @@ function setupEventListeners() {
   // 注册
   document.getElementById('registerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const res = await fetch(API + '/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.fromEntries(formData))
-    });
-    const data = await res.json();
+    e.stopPropagation();
     
-    if (data.success) {
-      showToast('注册成功，请登录', 'success');
-      document.getElementById('registerForm').style.display = 'none';
-      document.getElementById('loginForm').style.display = 'flex';
-    } else {
-      showToast(data.message, 'error');
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    
+    console.log('注册数据:', data);
+    
+    try {
+      const res = await fetch(API + '/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      
+      console.log('注册响应状态:', res.status);
+      const result = await res.json();
+      console.log('注册响应:', result);
+      
+      if (result.success) {
+        showToast('注册成功，请登录', 'success');
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('loginForm').style.display = 'flex';
+        e.target.reset();
+      } else {
+        showToast(result.message || '注册失败', 'error');
+      }
+    } catch (err) {
+      console.error('注册错误:', err);
+      showToast('网络错误: ' + err.message, 'error');
     }
   });
   
