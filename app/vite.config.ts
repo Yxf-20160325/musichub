@@ -12,6 +12,6 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
-    allowedHosts: ['musichub-unka.onrender.com/'],
+    allowedHosts: ['musichub-unka.onrender.com'],
   },
 })
