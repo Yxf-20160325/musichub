@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": "admin_1",
+      "username": "admin",
+      "email": "admin@musichub.com",
+      "password": "admin123",
+      "role": "admin",
+      "createdAt": "2026-03-28T12:58:38.387Z"
+    }
+  ],
+  "songs": [
+    {
+      "id": "song_1774703409596_mpn86d2lb",
+      "title": "otherside",
+      "artist": "",
+      "album": "",
+      "genre": "流行",
+      "duration": 195,
+      "cover": "https://picsum.photos/seed/1774703409596/300/300",
+      "url": "/music/audio-1774703409535-450444247.mp3",
+      "uploadedBy": "admin_1",
+      "uploadedAt": "2026-03-28T13:10:09.596Z",
+      "plays": 0,
+      "likes": []
+    }
+  ],
+  "currentUser": null
+}
